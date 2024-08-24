@@ -11,4 +11,7 @@ const runServer = async () => {
   app.listen(PORT, () => console.log(`Server listening to port ${PORT}...`));
 };
 
+app.use(express.json());
+app.use("/tasks", require("./routes/tasks"));
+
 runServer();
