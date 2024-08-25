@@ -38,6 +38,19 @@ const TaskController = {
       res.send(task);
     } catch (error) {
       console.error(error);
+      res.status(400).send({ message: "Could not complete task" });
+    }
+  },
+  async update(req, res) {
+    try {
+      const task = await Task.findByIdAndUpdate(
+        req.params.id,
+        { task: req.body.task },
+        { new: true }
+      );
+      res.send(task);
+    } catch (error) {
+      console.error(error);
       res.status(400).send({ message: "Could not update task" });
     }
   },
