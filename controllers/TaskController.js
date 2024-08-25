@@ -54,6 +54,15 @@ const TaskController = {
       res.status(400).send({ message: "Could not update task" });
     }
   },
+  async delete(req, res) {
+    try {
+      const task = await Task.findByIdAndDelete(req.params.id);
+      res.send(task);
+    } catch (error) {
+      console.error(error);
+      res.status(400).send({ message: "Could not delete task" });
+    }
+  },
 };
 
 module.exports = TaskController;
